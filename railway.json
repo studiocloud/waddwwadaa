@@ -1,0 +1,71 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "npm run build"
+  },
+  "deploy": {
+    "startCommand": "node dist/server/index.js",
+    "restartPolicyType": "ON_FAILURE",
+    "numReplicas": 1,
+    "healthcheckPath": "/api/health",
+    "healthcheckTimeout": 300
+  },
+  "variables": {
+    "NODE_ENV": {
+      "value": "production"
+    },
+    "PORT": {
+      "value": "5173"
+    },
+    "HOST": {
+      "value": "0.0.0.0"
+    },
+    "CORS_ORIGIN": {
+      "required": true,
+      "description": "Allowed CORS origin (e.g., https://your-app.railway.app)"
+    },
+    "RATE_LIMIT_WINDOW_MS": {
+      "value": "900000"
+    },
+    "RATE_LIMIT_MAX_REQUESTS": {
+      "value": "100"
+    },
+    "SMTP_HOST": {
+      "required": true,
+      "description": "SMTP server hostname"
+    },
+    "SMTP_PORT": {
+      "value": "587"
+    },
+    "SMTP_SECURE": {
+      "value": "false"
+    },
+    "SMTP_USER": {
+      "required": true,
+      "description": "SMTP username/email"
+    },
+    "SMTP_PASS": {
+      "required": true,
+      "description": "SMTP password",
+      "sensitive": true
+    },
+    "SMTP_FROM": {
+      "required": true,
+      "description": "Email address to send from"
+    },
+    "VITE_SUPABASE_URL": {
+      "required": true,
+      "description": "Supabase project URL"
+    },
+    "VITE_SUPABASE_ANON_KEY": {
+      "required": true,
+      "description": "Supabase anonymous key"
+    },
+    "SUPABASE_SERVICE_KEY": {
+      "required": true,
+      "description": "Supabase service key",
+      "sensitive": true
+    }
+  }
+}
